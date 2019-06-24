@@ -1,0 +1,66 @@
+body{
+    margin: 0;
+    font-family: 'Hammersmith One', sans-serif;
+    background: url(../images/bg-img.png);
+    background-color: #000;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size:cover; 
+}
+.box-section{
+    padding: 1rem;
+    padding-top: 20px;
+    background-color: rgba(255, 255, 255, 0.89);
+    min-height: 400px;
+    box-shadow: 1px 2px 30.5px #000;
+    text-align: center;
+    margin: 2rem auto;   
+    float: left;
+    width: 100%;
+}
+.add-train-schedul-section form{
+    text-align: initial;
+    background-color: #caf3ff;
+    padding: 20px;
+}
+
+.train-scheduler .table{
+    background-color: #caf3ff;
+}
+.train-scheduler{
+    padding: 20px;
+    border: 1px solid #cccaca;
+    background-color: #f7f7f7;
+    /* box-shadow: 1px 2px 6.5px rgba(0, 0, 0, 0.89); */
+}
+.add-train-schedul-section{
+    padding: 20px;
+    border: 1px solid #cccaca;
+    background-color: #f7f7f7;
+    margin-top: 30px;
+    /* box-shadow: 1px 2px 6.5px rgba(0, 0, 0, 0.89); */
+}
+
+p{   
+    width: 100%;
+}
+h1{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 3em;
+    border-bottom: 1px dashed;
+    display: inline-block;
+    padding: 15px 0px;
+}
+.add-train-schedul-section .form-control{
+   border-radius: 0px;
+}
+
+.add-train-schedul-section button{
+    margin-right: 5px;
+    border-radius: 0;
+    background-color: #003a80;
+    border: 1px solid #003a80;
+    text-transform: capitalize;
+    color: #fff;
+}
