@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giphy</title>
+    <title>Train Scheduler</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Hammersmith+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,73 +11,86 @@
 	
 </head>
 <body>
-<div class="container">
-<div class="text-center">
-  <h1>Anytime is train time</h1>
-  <h4 style="color:white">Choo Choo. Chee Chee</h4>
-</div>
-<div class="box-section">
-  <div class="train-scheduler">
-    <h4>Current Train Scheduler</h4>
-    <table class="table table-hover ">
-      <thead>
-        <tr>
-          <th>Train Name</th>
-          <th>Destination</th>
-          <th>Frequency(min)</th>
-          <th>Next Arrival</th>
-          <th>Minutes Away</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="train-schedules">
-          <td >Trenton Express</td>
-          <td>Trenton</td>
-          <td>25</td>
-          <td>05:35 PM</td>
-          <td>10</td>
-        </tr>
-      
-      </tbody>
-    </table>
-
-  </div>
-  <div class="add-train-schedul-section">
-    <h4>Add Train</h4>
-  
-     
-      
-  
-      <form id="train-add-form">
-         
-        <div class="form-group">
-          <label for="name">Train Name:</label>
-          <input id="train-name" class="form-control"  type="text">
-        </div>
-        <div class="form-group">
-            <label for="destination">Destination:</label>
-            <input type="text" class="form-control" id="destination" >
+<div class="container-fluid">
+    <div class="row header-section">
+    <div class="col-sm-12 ">
+        <div class="text-center">
+            <h1>Anytime is train time</h1>
+            <h4 style="color:white">Choo Choo. Chee Chee</h4>
           </div>
-          <div class="form-group">
-              <label for="train-time">First Train Time:(HH:mm military time)</label>
-              <input type="text" class="form-control" id="train-time" >
-            </div>
-          <div class="form-group">
-              <label for="frequency">Frequency:(min)</label>
-              <input type="text" class="form-control" id="frequency" >
-            </div>
-            
-             
-        <button id="add-train"  value="Add Item" type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </div>
   </div>
 </div>
+<div class="container">
+
+  <div class="row">
+  <div class="col-sm-8">
+   <h4 class="sub-title">Current Train Scheduler</h4>
+    <div class="train-scheduler">
+        
+        <table class="table table-hover ">
+          <thead>
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Frequency(min)</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+            </tr>
+          </thead>
+          <tbody id="train-schedules">
+            <!--table row will be appended here-->
+          
+          </tbody>
+        </table>
+      </div>
+  </div>
+  <div class="col-sm-4">
+      <h4 class="sub-title">Add Train</h4>
+      <div class="add-train-schedul-section">
+          
+            <form id="train-add-form">
+               
+              <div class="form-group">
+                <label for="name">Train Name:</label>
+                <input id="train-name" class="form-control"  type="text" required>
+              </div>
+              <div class="form-group">
+                  <label for="destination">Destination:</label>
+                  <input type="text" class="form-control" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="train-time">First Train Time:(HH:mm military time)</label>
+               
+                    <input type="time" class="form-control" id="train-time" placeholder="00:00" required>
+                  </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency:(min)</label>
+                    <input type="text" class="form-control" id="frequency" required>
+                  </div>
+                  
+                   
+              <button id="add-train"  value="Add Item" type="submit" class="btn btn-primary" >Submit</button>
+            </form>
+        </div>
+
+  </div>
 </div>
 
+</div>
+<footer>
+    Copyright ©
+</footer>
 	
 			
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Moment.js cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+  <!-- LINKS FOR FIREBASE GO HERE -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
   <script src="assets/js/train-scheduler.js"></script>
 </body>
 </html>

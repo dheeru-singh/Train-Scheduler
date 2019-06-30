@@ -9,7 +9,7 @@ var config = {
   };
 
   firebase.initializeApp(config);
-
+ // console.log(moment("1432", "hmm").format("HH:mm"));
   // Create a variable to reference the database
   var database = firebase.database();
 
@@ -21,60 +21,70 @@ var config = {
 
   
   $("#add-train").on("click", function(event) {
+    
     // Don't refresh the page!
     event.preventDefault();
-    //check if any input field is not empty
      if( $('#train-name').val()!=="" && $('#destination').val()!=="" &&
          $('#train-time').val()!=="" && $('#frequency').val()!==""){
-      // Get inputs from the form field
-      trainName = $('#train-name').val().trim();
-      destination = $('#destination').val().trim();
+      // Get inputs
+      trainName = $('#train-name')
+        .val()
+        .trim();
+      destination = $('#destination')
+        .val()
+        .trim();
+      // trainTime = $('#train-time')
+      //   .val()
+      //   .trim();
       firstTrain=  moment($("#train-time").val().trim(), "HH:mm").subtract(10, "years").format("X");
-      frequency = $('#frequency').val().trim();
-     
+     console.log(firstTrain);
+      frequency = $('#frequency')
+        .val()
+        .trim();
       // Change what is saved in firebase
       database.ref().push({
         trainName: trainName,
         destination: destination,
         firstTrain: firstTrain,
         frequency: frequency,
-    
+     
+    // Code in the logic for storing and retrieving the most recent user.
+
+    // Don't forget to provide initial data to your Firebase database.
     });
-    //alert message when new train is sussesfully added
+
     alert("New train successfully added");
       
-    // when new train is successfully added then clear text-boxes
+    // clear text-boxes
     $("#train-name").val("");
     $("#destination").val("");
     $("#train-time").val("");
     $("#frequency").val("");
      }
     else{
-      //alert message when user submit the form without entering the input field
       alert("Please Fill all the Input field");
      }
   });
 
-  //when the new train added successfully then retriving the data from the database
   database.ref(). on("child_added", function(childSnapshot, prevChildKey){
     
-    // console.log(childSnapshot.val());
+    console.log(childSnapshot.val());
     var fireTrainName=childSnapshot.val().trainName;
     var fireDestination= childSnapshot.val().destination;
     var fireFrequency= childSnapshot.val().frequency;
     var fireFirstTrain= childSnapshot.val().firstTrain;
  
-    var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
+   // var differenceTimes = moment().diff(moment.unix(fireFirstTrain), "minutes");
     var remainder = moment().diff(moment.unix(fireFirstTrain), "minutes") % fireFrequency ;
-    //calculating the minutes away
     var minutes = fireFrequency - remainder;
-    //calculating the next arrival
+
     var arrival = moment().add(minutes, "m").format("hh:mm A"); 
-    // console.log(minutes);
-    // console.log(arrival);
-    // console.log(moment().format("hh:mm A"));
-    // console.log(arrival);
-    // console.log(moment().format("X"));
+    console.log(minutes);
+    console.log(arrival);
+
+    console.log(moment().format("hh:mm A"));
+    console.log(arrival);
+    console.log(moment().format("X"));
 
       $("#train-schedules").append(
         "<tr><td>" +  fireTrainName+
@@ -82,12 +92,10 @@ var config = {
         "</td><td>" + fireFrequency +
         "</td><td>" + arrival +  
         "</td><td>" + minutes + 
-        "</td>");
+        "</td><td>" +"<button type='button' class='btn btn-danger remove-btn'>Remove" + 
+         "</td>");
       
-        // <td>" +"<button type='button' class='btn btn-danger remove-btn'>Remove" + 
-        //  "</td>
-
-    // If any errors are experienced, log them to console.
+      // If any errors are experienced, log them to console.
     },
     function(errorObject) {
       console.log('The read failed: ' + errorObject.code);
@@ -95,17 +103,6 @@ var config = {
   );
 
 
-
-//   $("#train-schedules").on('click', '.remove-btn', function(event){
-//     $(this).closest('tr').remove();
-  
-//    //console.log(database.collection('train-scheduler-ca324').doc("destination"));
-//    // ref.child(key).remove();
-  
-//     database.ref(). on("child_removed", function(childSnapshot, prevChildKey){
-//      console.log(childSnapshot);
-
-     
-//     });
-//  });
-
+  $("#train-schedules").on('click', '.remove-btn', function(){
+     $(this).closest('tr').remove();
+  });
