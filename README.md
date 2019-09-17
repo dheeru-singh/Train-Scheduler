@@ -5,7 +5,7 @@ In this assignment, you'll create a train schedule application that incorporates
 
 ### Technologies Used
 
-* **jQuery for Dom Manipulation**
+* jQuery for Dom Manipulation
 * Firebase to store data
 * GitHub to backup your project
 * GithHub Pages to host finished site.
